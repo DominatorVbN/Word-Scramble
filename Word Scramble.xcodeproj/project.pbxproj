@@ -15,6 +15,8 @@
 		832961FB236DDF45007E387B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832961F9236DDF45007E387B /* LaunchScreen.storyboard */; };
 		83296206236DDF46007E387B /* Word_ScrambleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83296205236DDF46007E387B /* Word_ScrambleTests.swift */; };
 		83296211236DDF46007E387B /* Word_ScrambleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83296210236DDF46007E387B /* Word_ScrambleUITests.swift */; };
+		8329621F236DE250007E387B /* start.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8329621E236DE250007E387B /* start.txt */; };
+		83468767236EBE11005A8133 /* Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83468766236EBE11005A8133 /* Modifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		8329620C236DDF46007E387B /* Word ScrambleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Word ScrambleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83296210236DDF46007E387B /* Word_ScrambleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word_ScrambleUITests.swift; sourceTree = "<group>"; };
 		83296212236DDF46007E387B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8329621E236DE250007E387B /* start.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = start.txt; sourceTree = "<group>"; };
+		83468766236EBE11005A8133 /* Modifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,12 +103,12 @@
 		832961ED236DDF40007E387B /* Word Scramble */ = {
 			isa = PBXGroup;
 			children = (
-				832961EE236DDF41007E387B /* AppDelegate.swift */,
-				832961F0236DDF41007E387B /* SceneDelegate.swift */,
+				83468765236EBDF4005A8133 /* Support */,
 				832961F2236DDF41007E387B /* ContentView.swift */,
 				832961F4236DDF45007E387B /* Assets.xcassets */,
 				832961F9236DDF45007E387B /* LaunchScreen.storyboard */,
 				832961FC236DDF45007E387B /* Info.plist */,
+				8329621E236DE250007E387B /* start.txt */,
 				832961F6236DDF45007E387B /* Preview Content */,
 			);
 			path = "Word Scramble";
@@ -134,6 +138,16 @@
 				83296212236DDF46007E387B /* Info.plist */,
 			);
 			path = "Word ScrambleUITests";
+			sourceTree = "<group>";
+		};
+		83468765236EBDF4005A8133 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				832961F0236DDF41007E387B /* SceneDelegate.swift */,
+				832961EE236DDF41007E387B /* AppDelegate.swift */,
+				83468766236EBE11005A8133 /* Modifier.swift */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				832961FB236DDF45007E387B /* LaunchScreen.storyboard in Resources */,
+				8329621F236DE250007E387B /* start.txt in Resources */,
 				832961F8236DDF45007E387B /* Preview Assets.xcassets in Resources */,
 				832961F5236DDF45007E387B /* Assets.xcassets in Resources */,
 			);
@@ -269,6 +284,7 @@
 			files = (
 				832961EF236DDF41007E387B /* AppDelegate.swift in Sources */,
 				832961F1236DDF41007E387B /* SceneDelegate.swift in Sources */,
+				83468767236EBE11005A8133 /* Modifier.swift in Sources */,
 				832961F3236DDF41007E387B /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
