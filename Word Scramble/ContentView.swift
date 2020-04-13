@@ -7,7 +7,12 @@
 //
 
 import SwiftUI
-
+extension View{
+    func calColor(_ geo: GeometryProxy, _ innerGeo: GeometryProxy)->some View{
+        let value = (innerGeo.frame(in: .global).minY - geo.frame(in: .global).minY)/geo.frame(in: .global).maxY
+        return self.hueRotation(Angle(degrees: Double(360 * value)))
+    }
+}
 struct ContentView: View {
     @State var usedWords = [String]()
     @State var rootWord = ""
@@ -22,12 +27,12 @@ struct ContentView: View {
     
     var scoreText: some View{
         Text("Your current score is ")
-                           .font(.title)
-                           +
-        Text("\(currentScore)")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color(UIColor.systemOrange))
+            .font(.title)
+            +
+            Text("\(currentScore)")
+                .font(.title)
+                .fontWeight(.bold)
+                .foregroundColor(Color(UIColor.systemOrange))
     }
     
     var body: some View {
@@ -37,16 +42,32 @@ struct ContentView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .autocapitalization(.none)
                     .padding()
-                List(usedWords, id: \.self){ word in
-                    HStack{
-                        Image(systemName: "\(word.count).circle.fill")
-                            .foregroundColor(Color(UIColor.systemOrange))
-                        Text(word)
-                        Spacer()
+                GeometryReader{geo in
+                    List{
+                        ForEach(self.usedWords, id: \.self){ word in
+                            VStack{
+                                GeometryReader{ innerGeo in
+                                    HStack{
+                                        Image(systemName: "\(word.count).circle.fill")
+                                            .foregroundColor(Color.orange)
+                                            .calColor(geo, innerGeo)
+                                        Text(word)
+                                        Spacer()
+                                    }
+                                    .addBackgroundStyle()
+                                    .opacity(Double(1 - (self.calculateMul(geo, innerGeo)*2)))
+                                    .offset(CGSize(width: innerGeo.frame(in: .global).width * self.calculateMul(geo, innerGeo), height: 0))
+                                    .scaleEffect( 1 - self.calculateMul(geo, innerGeo))
+                                }
+                                .frame(height: 50)
+                            }
+                        }
                     }
-                    .addBackgroundStyle()
+                    .coordinateSpace(name: "Custom")
+
+
                 }
-               scoreText
+                scoreText
             }
             .navigationBarTitle(rootWord)
             .navigationBarItems(trailing: Button(action: startGame){
@@ -60,6 +81,17 @@ struct ContentView: View {
             }
         }
     }
+    
+    func calculateMul(_ geo: GeometryProxy, _ innerGeo: GeometryProxy)->CGFloat{
+        let value = (innerGeo.frame(in: .global).minY - geo.frame(in: .global).minY)/geo.frame(in: .global).maxY
+        if ((innerGeo.frame(in: .global).minY - geo.frame(in: .global).minY) >=  geo.frame(in: .global).height * 0.7){
+            return value - 0.5168195718654435
+        }//0.5168195718654435
+
+        return 0
+    }
+    
+
     
     func addNewWord(){
         // lowercase and trim the word, to make sure we don't add duplicate words with case differences
